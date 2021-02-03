@@ -13,7 +13,8 @@ join orders on customer.id = orders.Customer_id
 join order_includes on order_includes.Orders_id = orders.id
 join product on product.id = order_includes.Product_id
 join price on price.id = product.Price_id
-group by community.id;
+group by community.id
+having sum(price.value) > 1000;
 
 -- Vilken månad hade du den största försäljningen? (det måste finnas data som anger försäljning för mer än en månad i databasen)
 select month(date), sum(price.value) from orders
