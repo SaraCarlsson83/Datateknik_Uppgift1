@@ -12,7 +12,15 @@ insert into color (col_name) values ('Black'), ('White'), ('Yellow'), ('Brown'),
 alter table label AUTO_INCREMENT=30;
 insert into label (label_name) values ('Ecco'), ('Nike'), ('Adidas'), ('Dr Martens');
 
-alter table shoe AUTO_INCREMENT=40;
+alter table size AUTO_INCREMENT=150;
+insert into size (Size_name) 
+value (22), (29), (38), (39), (40), (41), (44), (46);
+
+alter table name auto_increment = 160;
+insert into name(Shoe_name) 
+value ('Tessa'), ('Brooke'), ('Johnny'), ('Percy'), ('Voxna'), ('Yxhult');
+ 
+alter table shoe AUTO_INCREMENT=50;
 insert into shoe (Label_id, Color_id, Price_id, Size_id, Name_id) values 
 (33,82,120,150,160), (31,81,121,153,161), (31,80,122,151,162), (30,80,123,152,163), 
 (32,84,122,154,164), (33,81,124,156,165), (33,84,120,157, 162), (32,80,124,155,160);
@@ -33,7 +41,6 @@ insert into Customer(first_name, last_name, Adress, Community_id) values
 ('Musse', 'Pigg', 'Svansvägen', 20),
 ('Nalle', 'Puh', 'Trädet', 22),
 ('Mimmi', 'Pigg', 'Svansvägen', 20);
-
 
 insert into Orders(id, date, Customer_id) values
 (110, '2020-12-01', 10), -- Agaton Sax
@@ -68,14 +75,8 @@ insert into Rating(id, Comment, RatingAlternatives_id, shoe_id, Customer_id) val
 (133, null, 91, 40, 13), -- id 13, Nalle Puh
 (134, null, 93, 43, 13); -- id 13, Nalle Puh
 
-alter table size AUTO_INCREMENT=150;
-insert into size (Size_name) 
-value (22), (29), (38), (39), (40), (41), (44), (46);
+select * from shoe;
 
-alter table name auto_increment = 160;
-insert into name(Shoe_name) 
-value ('Tessa'), ('Brooke'), ('Johnny'), ('Percy'), ('Voxna'), ('Yxhult');
- 
  -- id 40 Dr Martens, yellow, 200, stl 22
 -- id 41 Nike, white, 250, stl 39
 -- id 42 Nike, Black, 400, stl 29
