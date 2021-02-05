@@ -127,6 +127,6 @@ foreign key (Customer_id) references Customer(id),
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
 
--- När man vill köpa skor i en webbshop letar man det som önskas oftast genom kategori som skor tillhör
+-- När man vill köpa skor i en webbshop letar man oftast genom vilken kategori som skon tillhör
 create index IX_categoryname on category(cat_name);
 
