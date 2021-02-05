@@ -12,13 +12,10 @@ insert into color (col_name) values ('Black'), ('White'), ('Yellow'), ('Brown'),
 alter table label AUTO_INCREMENT=30;
 insert into label (label_name) values ('Ecco'), ('Nike'), ('Adidas'), ('Dr Martens');
 
-alter table product AUTO_INCREMENT=40;
-insert into product (Label_id, Color_id, Price_id, Size) values 
-(33,82,120,'22'), (31,81,121,'39'), (31,80,122,'29'), (30,80,123,'38'), 
-(32,84,122,'40'), (33,81,124,'44'), (33,84,120,'46'), (32,80,124,'41');
-
-alter table shoe AUTO_INCREMENT=50;
-insert into shoe (Product_id) values (40), (41), (42), (43), (44), (45), (46), (47);
+alter table shoe AUTO_INCREMENT=40;
+insert into shoe (Label_id, Color_id, Price_id, Size_id, Name_id) values 
+(33,82,120,150,160), (31,81,121,153,161), (31,80,122,151,162), (30,80,123,152,163), 
+(32,84,122,154,164), (33,81,124,156,165), (33,84,120,157, 162), (32,80,124,155,160);
 
 alter table divide_into_category AUTO_INCREMENT=60;
 insert into divide_into_category (Shoe_id, Category_id) values 
@@ -55,8 +52,7 @@ insert into Rating_Alternatives(id, options) values
 (92, 'Ganska nöjd'),
 (93, 'Missnöjd');
 
-
-insert into Order_includes(id, product_id, Orders_id) values
+insert into Order_includes(id, shoe_id, Orders_id) values
 (110, 40, 110), (111, 44, 110), -- id 10, Agaton Sax
 (112, 47, 111), -- id 13, Nalle Puh
 (113, 43, 112), -- id 14, Mimmi Pigg
@@ -65,7 +61,7 @@ insert into Order_includes(id, product_id, Orders_id) values
 (105, 47, 115), -- id 12, Musse Pigg
 (106, 40, 116), (107, 41, 116), (108, 42, 116), (109, 43, 116); -- id 13, Nalle Puh
 
-insert into Rating(id, Comment, RatingAlternatives_id, Product_id, Customer_id) values
+insert into Rating(id, Comment, RatingAlternatives_id, shoe_id, Customer_id) values
 (130, 'Mycket obekväm', 93, 42, 13), -- id 13, Nalle Puh
 (131, null, 90, 43, 14), -- id 14, Mimmi Pigg
 (132, 'Helt ok för det priset', 91, 47, 12), -- id 12, Musse pigg
@@ -81,6 +77,3 @@ insert into Rating(id, Comment, RatingAlternatives_id, Product_id, Customer_id) 
 -- id 46 Dr Martens, Pink, 200, stl 46
 -- id 47 Adidas, Black, 1000, stl 41 
 
-select*from Rating;
-select*from Customer;
-select*from Orders;
