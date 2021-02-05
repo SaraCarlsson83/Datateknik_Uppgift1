@@ -20,15 +20,15 @@ alter table name auto_increment = 160;
 insert into name(Shoe_name) 
 value ('Tessa'), ('Brooke'), ('Johnny'), ('Percy'), ('Voxna'), ('Yxhult');
  
-alter table shoe AUTO_INCREMENT=50;
+alter table shoe AUTO_INCREMENT=40;
 insert into shoe (Label_id, Color_id, Price_id, Size_id, Name_id) values 
 (33,82,120,150,160), (31,81,121,153,161), (31,80,122,151,162), (30,80,123,152,163), 
 (32,84,122,154,164), (33,81,124,156,165), (33,84,120,157, 162), (32,80,124,155,160);
 
 alter table divide_into_category AUTO_INCREMENT=60;
 insert into divide_into_category (Shoe_id, Category_id) values 
-(50,72), (50,75), (51,70), (51,74), (52,70), (52,75), (53,74), (53,75),
-(54,72), (54,74), (55,73), (55,72), (56,73), (56,70), (57,71);
+(40,72), (40,75), (41,70), (41,74), (42,70), (42,75), (43,70), (43,75),
+(44,72), (44,74), (45,73), (45,72), (46,73), (46,70), (47,71);
 
 insert into Community(id,com_name) values
 (20, 'Stockholm'), (21,'Malmö'), (22,'Göteborg');
@@ -67,6 +67,8 @@ insert into Order_includes(id, shoe_id, Orders_id) values
 (102, 43, 114), (103, 47, 114), (104, 40, 114), -- id 11, Kalle Anka
 (105, 47, 115), -- id 12, Musse Pigg
 (106, 40, 116), (107, 41, 116), (108, 42, 116), (109, 43, 116); -- id 13, Nalle Puh
+
+select * from order_includes;
 
 insert into Rating(id, Comment, RatingAlternatives_id, shoe_id, Customer_id) values
 (130, 'Mycket obekväm', 93, 42, 13), -- id 13, Nalle Puh
