@@ -69,6 +69,7 @@ primary key(id),
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
 
+ -- Referensintegritet - Om man väljer att ta bort en färg från webbshoppen så blir värdet null på de skorna där den färgen är vald. 
 create table Shoe(
 id int not null auto_increment, 
 Label_id int not null, 
@@ -95,6 +96,8 @@ foreign key (Category_id) references Category(id),
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
 
+ -- Referensintegritet 1 - Om en kund tar bort sig själv från en webshop så ska ordern fortfarande ligga kvar
+ -- Referensintegritet 2 - Om info om en kund uppdateras så ska även den infon uppdateras i ordern. 
 create table Orders(
 id int not null auto_increment, 
 date Date not null,
@@ -104,6 +107,8 @@ foreign key (Customer_id) references Customer(id) on delete set null on update c
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
 
+ -- Referensintegritet 1 - Om en order raderas så ska även det som ligger i ordern raderas.
+ -- Referensintegritet 2 - Om en sko i en viss order raderas så sätts det värdet till null. 
 create table Order_includes(
 id int not null auto_increment, 
 Orders_id int,
@@ -114,6 +119,7 @@ foreign key (Shoe_id) references Shoe(id) on delete set null,
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
 
+ -- Referensintegritet 1 - Om en sko tas bort ur sortimentet ska även Ratingen av skon tas bort.
 create table Rating(
 id int not null auto_increment, 
 Comment varchar(150),
@@ -129,4 +135,3 @@ lastupdate timestamp default current_timestamp on update current_timestamp);
 
 -- När man vill köpa skor i en webbshop letar man oftast genom vilken kategori som skon tillhör
 create index IX_categoryname on category(cat_name);
-
