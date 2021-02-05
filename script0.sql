@@ -55,23 +55,35 @@ foreign key (Community_id) references Community(id),
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
 
-create table Product(
+create table Size(
 id int not null auto_increment, 
-Label_id int not null, 
-Color_id int,  
-Price_id int not null,
+Size_id int not null,
+Size_name varchar(50) not null,
 primary key(id),
-foreign key (Label_id) references Label(id),
-foreign key (Color_id) references Color(id),
-foreign key (Price_id) references Price(id),
+created timestamp default current_timestamp, 
+lastupdate timestamp default current_timestamp on update current_timestamp);
+
+create table Name(
+id int not null auto_increment, 
+Name_id int not null,
+Shoe_name varchar(50) not null,
+primary key(id),
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
 
 create table Shoe(
 id int not null auto_increment, 
-Product_id int not null,
+Label_id int not null, 
+Color_id int,  
+Price_id int not null,
+Name_id int not null,
+Size_id int not null,
 primary key(id),
-foreign key (Product_id) references Product(id),
+foreign key (Label_id) references Label(id),
+foreign key (Color_id) references Color(id),
+foreign key (Price_id) references Price(id),
+foreign key (Name_id) references Name(id),
+foreign key (Size_id) references Size(id),
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
 
@@ -97,10 +109,10 @@ lastupdate timestamp default current_timestamp on update current_timestamp);
 create table Order_includes(
 id int not null auto_increment, 
 Orders_id int not null,
-Product_id int not null,
+Shoe_id int not null,
 primary key(id),
 foreign key (Orders_id) references Orders(id),
-foreign key (Product_id) references Product(id),
+foreign key (Shoe_id) references Shoe(id),
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
 
@@ -108,11 +120,13 @@ create table Rating(
 id int not null auto_increment, 
 Comment varchar(150),
 RatingAlternatives_id int not null,
-Product_id int not null,
+Shoe_id int not null,
 Customer_id int not null, 
 primary key(id),
 foreign key (RatingAlternatives_id) references Rating_Alternatives(id),
-foreign key (Product_id) references Product(id),
+foreign key (Shoe_id) references Shoe(id),
 foreign key (Customer_id) references Customer(id),
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
+
+
