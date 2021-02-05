@@ -57,7 +57,6 @@ lastupdate timestamp default current_timestamp on update current_timestamp);
 
 create table Size(
 id int not null auto_increment, 
-Size_id int not null,
 Size_name varchar(50) not null,
 primary key(id),
 created timestamp default current_timestamp, 
@@ -65,7 +64,6 @@ lastupdate timestamp default current_timestamp on update current_timestamp);
 
 create table Name(
 id int not null auto_increment, 
-Name_id int not null,
 Shoe_name varchar(50) not null,
 primary key(id),
 created timestamp default current_timestamp, 
@@ -128,5 +126,7 @@ foreign key (Shoe_id) references Shoe(id),
 foreign key (Customer_id) references Customer(id),
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
+
+create index IX_categoryname on category(cat_name);
 
 
