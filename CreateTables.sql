@@ -69,17 +69,15 @@ primary key(id),
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
 
- -- Referensintegritet - Om man väljer att ta bort en färg från webbshoppen så blir värdet null på de skorna där den färgen är vald. 
+ 
 create table Shoe(
 id int not null auto_increment, 
-Label_id int not null, 
-Color_id int,  
+Label_id int not null,   
 Price_id int not null,
 Name_id int not null,
 Size_id int not null,
 primary key(id),
 foreign key (Label_id) references Label(id),
-foreign key (Color_id) references Color(id) on delete set null,
 foreign key (Price_id) references Price(id),
 foreign key (Name_id) references Name(id),
 foreign key (Size_id) references Size(id),
@@ -95,6 +93,18 @@ foreign key (Shoe_id) references Shoe(id),
 foreign key (Category_id) references Category(id),
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
+
+-- Referensintegritet - Om man väljer att ta bort en färg från webbshoppen så tas färgen bort från den skon. 
+create table Shoe_color(
+id int not null auto_increment, 
+Shoe_id int not null, 
+Color_id int not null,
+primary key(id),
+foreign key (Shoe_id) references Shoe(id), 
+foreign key (Color_id) references Color(id) on delete cascade,
+created timestamp default current_timestamp, 
+lastupdate timestamp default current_timestamp on update current_timestamp);
+
 
  -- Referensintegritet 1 - Om en kund tar bort sig själv från en webshop så ska ordern fortfarande ligga kvar
  -- Referensintegritet 2 - Om info om en kund uppdateras så ska även den infon uppdateras i ordern. 
