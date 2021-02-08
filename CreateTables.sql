@@ -84,23 +84,25 @@ foreign key (Size_id) references Size(id),
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
 
+-- Referensintegritet - Om man väljer att ta bort en sko från webbshoppen så tas skon bort från kategorin. 
 create table Divide_into_Category(
 id int not null auto_increment, 
 Shoe_id int not null,
 Category_id int,
 primary key(id),
-foreign key (Shoe_id) references Shoe(id),
+foreign key (Shoe_id) references Shoe(id) on delete cascade,
 foreign key (Category_id) references Category(id),
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
 
--- Referensintegritet - Om man väljer att ta bort en färg från webbshoppen så tas färgen bort från den skon. 
+-- Referensintegritet 1 - Om man väljer att ta bort en färg från webbshoppen så tas färgen bort från den skon.
+-- Referensintegritet 2 - Om man väljer att ta bort en sko så finns inte längre den i färg-tabellen 
 create table Shoe_color(
 id int not null auto_increment, 
 Shoe_id int not null, 
 Color_id int not null,
 primary key(id),
-foreign key (Shoe_id) references Shoe(id), 
+foreign key (Shoe_id) references Shoe(id) on delete cascade, 
 foreign key (Color_id) references Color(id) on delete cascade,
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
@@ -130,18 +132,20 @@ created timestamp default current_timestamp,
 lastupdate timestamp default current_timestamp on update current_timestamp);
 
  -- Referensintegritet 1 - Om en sko tas bort ur sortimentet ska även Ratingen av skon tas bort.
+ -- Referensintegritet 2 - Om en kund tas bort ska Rating liggas kvar
 create table Rating(
 id int not null auto_increment, 
 Comment varchar(150),
 RatingAlternatives_id int not null,
 Shoe_id int not null,
-Customer_id int not null, 
+Customer_id int, 
 primary key(id),
 foreign key (RatingAlternatives_id) references Rating_Alternatives(id),
 foreign key (Shoe_id) references Shoe(id) on delete cascade,
-foreign key (Customer_id) references Customer(id),
+foreign key (Customer_id) references Customer(id) on delete set null,
 created timestamp default current_timestamp, 
 lastupdate timestamp default current_timestamp on update current_timestamp);
 
 -- När man vill köpa skor i en webbshop letar man oftast genom vilken kategori som skon tillhör
 create index IX_categoryname on category(cat_name);
+
